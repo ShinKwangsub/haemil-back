@@ -25,12 +25,12 @@ static void side_push(int v) {
   if (side_tail - side_head < 64) side_q[side_tail++ % 64] = v;
 }
 
-@interface BendBackMenu : NSObject
+@interface HaemilBackMenu : NSObject
 @end
-@implementation BendBackMenu
+@implementation HaemilBackMenu
 - (void)quit:(id)sender { side_push(SIDE_QUIT); }
 @end
-static BendBackMenu* side_menu = nil;
+static HaemilBackMenu* side_menu = nil;
 
 static void side_say(NSString* s) {
   side_status.title = s;
@@ -42,10 +42,10 @@ static void side_ui(void) {
   [NSApplication sharedApplication];
   [NSApp finishLaunching];
   side_icon = [NSStatusBar.systemStatusBar statusItemWithLength:NSSquareStatusItemLength];
-  NSImage* img = [NSImage imageWithSystemSymbolName:@"computermouse" accessibilityDescription:@"BendBack"];
+  NSImage* img = [NSImage imageWithSystemSymbolName:@"computermouse" accessibilityDescription:@"해밀 Back"];
   img.template = YES;
   side_icon.button.image = img;
-  side_menu = [BendBackMenu new];
+  side_menu = [HaemilBackMenu new];
   NSMenu* menu = [NSMenu new];
   side_status = [[NSMenuItem alloc] initWithTitle:@"작동 중" action:nil keyEquivalent:@""];
   NSMenuItem* quit = [[NSMenuItem alloc] initWithTitle:@"종료" action:@selector(quit:) keyEquivalent:@""];
@@ -108,11 +108,13 @@ static void side_relaunch(void) {
 }
 
 // /Applications 에서 처음 실행할 때 한 번만 로그인 항목으로 등록한다. 사용자가 시스템 설정에서 끄면 그대로 둔다.
+// 등록한 앱 경로를 적어 두어, 앱 이름이 바뀌어(BendBack.app → Haemil Back.app) 경로가 달라지면 다시 등록한다.
 static void side_login_item(void) {
   NSUserDefaults* d = NSUserDefaults.standardUserDefaults;
-  if (![NSBundle.mainBundle.bundlePath hasPrefix:@"/Applications/"] || [d boolForKey:@"loginItemRegistered"]) return;
+  NSString* path = NSBundle.mainBundle.bundlePath;
+  if (![path hasPrefix:@"/Applications/"] || [[d stringForKey:@"loginItemPath"] isEqualToString:path]) return;
   NSError* err = nil;
-  if ([SMAppService.mainAppService registerAndReturnError:&err]) [d setBool:YES forKey:@"loginItemRegistered"];
+  if ([SMAppService.mainAppService registerAndReturnError:&err]) [d setObject:path forKey:@"loginItemPath"];
   else fprintf(stderr, "로그인 항목 등록 실패: %s\n", err.localizedDescription.UTF8String);
 }
 
@@ -177,7 +179,7 @@ Term keys_tap_run(Env e, Term* f, IoWork* w) {
 // 터미널이 아니면(Finder·로그인 항목으로 켜졌으면) stderr 를 로그 파일로 보낸다. 1MB 를 넘으면 새로 쓴다.
 static void side_log(void) {
   if (isatty(2)) return;
-  NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/BendBack.log"];
+  NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/HaemilBack.log"];
   struct stat s;
   bool big = stat(path.fileSystemRepresentation, &s) == 0 && s.st_size > (1 << 20);
   int fd = open(path.fileSystemRepresentation, O_WRONLY | O_CREAT | (big ? O_TRUNC : O_APPEND), 0644);

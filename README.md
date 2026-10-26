@@ -1,9 +1,9 @@
-<p align="center"><img src="docs/icon.png" width="128" alt="BendBack 아이콘"></p>
+<p align="center"><img src="docs/icon.png" width="128" alt="해밀 Back 아이콘"></p>
 
-# BendBack
+# 해밀 Back (Haemil Back)
 
 마우스 옆 버튼으로 **뒤로 · 앞으로** 가게 해 주는 맥 메뉴 막대 앱입니다.
-게이밍 마우스나 일반 마우스의 옆 버튼은 맥의 Safari · Finder 에서 그냥 무시되는데, BendBack 이 그 신호를 받아 ⌘[ · ⌘] 로 바꿔 보냅니다.
+게이밍 마우스나 일반 마우스의 옆 버튼은 맥의 Safari · Finder 에서 그냥 무시되는데, 해밀 Back 이 그 신호를 받아 ⌘[ · ⌘] 로 바꿔 보냅니다.
 [Bend](https://github.com/HigherOrderCo/Bend) 언어로 썼습니다.
 
 | 버튼 | 동작 |
@@ -15,9 +15,9 @@ Safari, Chrome, Firefox, Finder 등 ⌘[ · ⌘] 를 쓰는 앱에서 동작합�
 
 ## 설치
 
-1. [최신 BendBack.dmg](https://github.com/ShinKwangsub/bend-back/releases/latest/download/BendBack.dmg) 를 받아 엽니다.
-2. BendBack 을 응용 프로그램(Applications) 폴더로 끌어 놓고 실행합니다.
-3. "손쉬운 사용" 권한을 묻는 창이 뜨면 **시스템 설정 > 개인정보 보호 및 보안 > 손쉬운 사용** 에서 BendBack 을 켭니다. 켜면 BendBack 이 스스로 다시 시작하며 동작합니다.
+1. [최신 HaemilBack.dmg](https://github.com/ShinKwangsub/haemil-back/releases/latest/download/HaemilBack.dmg) 를 받아 엽니다.
+2. 해밀 Back 을 응용 프로그램(Applications) 폴더로 끌어 놓고 실행합니다.
+3. "손쉬운 사용" 권한을 묻는 창이 뜨면 **시스템 설정 > 개인정보 보호 및 보안 > 손쉬운 사용** 에서 해밀 Back 을 켭니다. 켜면 해밀 Back 이 스스로 다시 시작하며 동작합니다.
 
 맥 13 (Ventura) 이상, 애플 실리콘 · 인텔 모두 지원합니다. 애플 공증을 받은 앱이라 경고 없이 열립니다.
 처음 실행하면 로그인 항목에 등록되어 다음부터 자동으로 켜집니다. 끄고 싶으면 **시스템 설정 > 일반 > 로그인 항목** 에서 끕니다.
@@ -28,8 +28,8 @@ Safari, Chrome, Firefox, Finder 등 ⌘[ · ⌘] 를 쓰는 앱에서 동작합�
 
 ## 다른 마우스
 
-모델마다 따로 맞출 필요는 없습니다. BendBack 은 맥이 정한 공통 번호인 3번 · 4번 버튼을 봅니다. 옆 버튼이 있는 마우스는 대개 이 번호를 보냅니다.
-안 되면 `~/Library/Logs/BendBack.log` 를 열어 보세요.
+모델마다 따로 맞출 필요는 없습니다. 해밀 Back 은 맥이 정한 공통 번호인 3번 · 4번 버튼을 봅니다. 옆 버튼이 있는 마우스는 대개 이 번호를 보냅니다.
+안 되면 `~/Library/Logs/HaemilBack.log` 를 열어 보세요.
 
 - `버튼 N 은 정한 동작이 없어 그대로 둡니다` 줄이 있으면 그 마우스는 다른 번호를 보냅니다. 이슈로 번호를 알려 주시거나 `back.bend` 의 `Nav.of` 를 고치면 됩니다.
 - 아무 줄도 없으면 제조사 프로그램(Logi Options+, Razer Synapse 등)이 옆 버튼을 다른 키로 바꿔 놓은 경우가 많습니다. 그 프로그램에서 옆 버튼을 기본값으로 돌려 주세요.
@@ -39,8 +39,8 @@ Safari, Chrome, Firefox, Finder 등 ⌘[ · ⌘] 를 쓰는 앱에서 동작합�
 필요한 것: [Bend](https://github.com/HigherOrderCo/Bend) 2.0.39 (`~/.bend/bin/bend`), Xcode 명령줄 도구.
 
 ```sh
-./build.sh          # build/BendBack.app (애플 실리콘 + 인텔)
-./release.sh        # 서명 · 공증한 dist/BendBack-<버전>.dmg (Developer ID 인증서와 notarytool 프로필 필요)
+./build.sh          # "build/Haemil Back.app" (애플 실리콘 + 인텔)
+./release.sh        # 서명 · 공증한 dist/HaemilBack-<버전>.dmg (Developer ID 인증서와 notarytool 프로필 필요)
 swift tools/icon.swift   # AppIcon.icns 다시 그리기
 ```
 
@@ -59,9 +59,9 @@ MIT ([LICENSE](LICENSE)). 앱 바이너리에는 Apache 2.0 라이선스인 Bend
 
 ## English
 
-BendBack is a macOS menu bar app that makes your mouse's side buttons go **Back / Forward** (⌘[ / ⌘]) in Safari, Finder, Chrome and other apps that ignore them. It is written in [Bend](https://github.com/HigherOrderCo/Bend).
+Haemil Back is a macOS menu bar app that makes your mouse's side buttons go **Back / Forward** (⌘[ / ⌘]) in Safari, Finder, Chrome and other apps that ignore them. It is written in [Bend](https://github.com/HigherOrderCo/Bend).
 
-- **Install:** download [BendBack.dmg](https://github.com/ShinKwangsub/bend-back/releases/latest/download/BendBack.dmg), drag BendBack to Applications, open it, and allow it under *System Settings > Privacy & Security > Accessibility*. It restarts itself once allowed and adds itself to Login Items. macOS 13+, Apple silicon and Intel, notarized.
-- **Other mice:** BendBack listens for the standard macOS mouse buttons 3 and 4, which most side buttons send. If yours does not work, check `~/Library/Logs/BendBack.log`, or reset the side buttons in your mouse vendor's software.
+- **Install:** download [HaemilBack.dmg](https://github.com/ShinKwangsub/haemil-back/releases/latest/download/HaemilBack.dmg), drag Haemil Back to Applications, open it, and allow it under *System Settings > Privacy & Security > Accessibility*. It restarts itself once allowed and adds itself to Login Items. macOS 13+, Apple silicon and Intel, notarized.
+- **Other mice:** Haemil Back listens for the standard macOS mouse buttons 3 and 4, which most side buttons send. If yours does not work, check `~/Library/Logs/HaemilBack.log`, or reset the side buttons in your mouse vendor's software.
 - **Build:** `./build.sh` with Bend 2.0.39 and the Xcode command line tools.
 - **License:** MIT. The app binary includes the Bend runtime (Apache 2.0), see `NOTICE`.

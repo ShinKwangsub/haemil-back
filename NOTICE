@@ -1,7 +1,7 @@
-BendBack
+Haemil Back (해밀 Back)
 Copyright (c) 2026 Kwangsub Shin. Licensed under the MIT License (see LICENSE).
 
-The BendBack app binary is compiled by the Bend compiler and contains the Bend
+The Haemil Back app binary is compiled by the Bend compiler and contains the Bend
 runtime, which is licensed under the Apache License, Version 2.0.
 Bend: https://github.com/HigherOrderCo/Bend
 A copy of that license is in licenses/Bend-Apache-2.0.txt.
