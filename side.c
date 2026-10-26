@@ -155,15 +155,22 @@ Term sidebutton_wait_run(Env e, Term* f, IoWork* w) {
   return io_done(e, v == SIDE_QUIT ? term_pak(CID(Quit), 0) : term_pak(CID(Press), (uint32_t)v));
 }
 
+static void side_key(CGKeyCode code, bool down, CGEventFlags flags) {
+  CGEventRef k = CGEventCreateKeyboardEvent(NULL, code, down);
+  CGEventSetFlags(k, flags);
+  CGEventPost(kCGSessionEventTap, k);
+  CFRelease(k);
+}
+
+// ⌘ 표시만 붙이면 Finder 가 ⌘] 를 무시할 때가 있어(시험에서 0/5), ⌘ 키(55)를 실제로 눌렀다 뗀다(5/5).
 Term keys_tap_run(Env e, Term* f, IoWork* w) {
   CGKeyCode code = (CGKeyCode)(uint32_t)f[0];
   CGEventFlags flags = (CGEventFlags)(uint32_t)f[1];
-  for (int down = 1; down >= 0; down--) {
-    CGEventRef k = CGEventCreateKeyboardEvent(NULL, code, down);
-    CGEventSetFlags(k, flags);
-    CGEventPost(kCGSessionEventTap, k);
-    CFRelease(k);
-  }
+  bool cmd = flags & kCGEventFlagMaskCommand;
+  if (cmd) side_key(55 /* kVK_Command */, true, kCGEventFlagMaskCommand);
+  side_key(code, true, flags);
+  side_key(code, false, flags);
+  if (cmd) side_key(55 /* kVK_Command */, false, 0);
   return term_pak(CID(Unit), 0);
 }
 
